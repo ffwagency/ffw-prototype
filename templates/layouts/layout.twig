@@ -11,12 +11,17 @@
   <body>
 
     {% block header %}
+      {% include 'navigation.twig' %}
       <h1>{% block title %}{% endblock %}</h1>
     {% endblock %}
 
     {% block content %}{% endblock %}
 
     {% block footer %}
+      <footer>This is a footer</footer>
+    {% endblock %}
+
+    {% block footer_scripts %}
       <script src="assets/js/jquery-1.11.3.min.js"></script>
     {% endblock %}
 

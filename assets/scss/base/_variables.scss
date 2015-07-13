@@ -5,7 +5,6 @@ Define all variables (aside from colors) in this document. This includes breakpo
 
 */
 
-
 //Breakpoints
 $mobile-landscape: 480px;
 $tablet: 768px;
@@ -19,3 +18,7 @@ $container-margin: 10px;
 $column-mobile: 4;
 $column-tablet: 8;
 $column-desktop: 12;
+
+//Font variables
+$base-font-size: 16px;
+$base-line-height: 1.4;

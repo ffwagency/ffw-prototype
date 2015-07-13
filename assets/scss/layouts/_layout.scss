@@ -26,4 +26,7 @@ This  includes global styles for html, body, etc.
 html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	font-smoothing: antialiased;
+	font-size: $base-font-size; // Don't modify static unit.
+	line-height: $base-line-height;
 }

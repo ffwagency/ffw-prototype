@@ -14,7 +14,9 @@ var gulp = require('gulp'),
   src = {
     scss: '../assets/scss/**/*.scss',
     css: '../assets/css',
-    html: '../templates/pages/*.twig',
+    blocks: '../templates/blocks/*.twig',
+    layouts: '../templates/layouts/*.twig',
+    pages: '../templates/pages/*.twig',
     dataJson: '../data/*.json',
     javascript: '../assets/js/*.js',
   };
@@ -26,11 +28,11 @@ gulp.task('serve', ['sass', 'templates'], function () {
 
   browserSync({
     server: "../",
-    files: ["../assets/css/styles.css", src.html]
+    files: ["../assets/css/styles.css", src.pages]
   });
 
   gulp.watch(src.scss, ['sass']);
-  gulp.watch([src.html], ['templates']);
+  gulp.watch([src.pages, src.blocks, src.layouts], ['templates']);
   gulp.watch(src.javascript, reload);
   gulp.watch(src.dataJson, reload);
 });
@@ -72,8 +74,8 @@ gulp.task('sass', function () {
  * Generate templates.
  */
 gulp.task('templates', function () {
-  return gulp.src(src.html)
-  
+  return gulp.src(src.pages)
+
     .pipe(data(function (file) {
       //return require('../data/global.json');
       //return require('../data/' + path.basename(file.path, '.twig') + '.json');

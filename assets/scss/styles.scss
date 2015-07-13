@@ -21,12 +21,16 @@ WARNING: DO NOT EDIT /assets/css/styles.css file manually, this should be genera
 @import 'base/typography';
 
 // Blocks
-@import 'blocks/example-block
+@import 'blocks/example-block';
 
 // Vendors
 
 // Layouts
 @import 'layout/layout';
+@import 'layout/navigation';
+@import 'layout/header';
+@import 'layout/footer';
+
 
 // Pages
 @import 'pages/index';
