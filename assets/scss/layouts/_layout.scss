@@ -1,0 +1,29 @@
+/*
+LAYOUT
+
+This is the main layout file.
+This file should be used to define the primary page layout that each of the page types will be extending.
+This  includes global styles for html, body, etc.
+
+*/
+
+@viewport{
+  zoom: 1;
+  width: extend-to-zoom;
+}
+
+@-ms-viewport{
+  width: extend-to-zoom;
+  zoom: 1;
+}
+
+//Enable border-box for all elements
+*, *:before, *:after {
+	box-sizing: border-box; 
+}
+
+//Enable font-smoothing
+html {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

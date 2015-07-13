@@ -1,0 +1,21 @@
+/*
+VARIABLES
+
+Define all variables (aside from colors) in this document. This includes breakpoint, sizes, etc.
+
+*/
+
+
+//Breakpoints
+$mobile-landscape: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$desktop-wide: 1280px;
+$desktop-superwide: 1440px;
+
+// Grid variables
+$container-margin: 10px;
+
+$column-mobile: 4;
+$column-tablet: 8;
+$column-desktop: 12;
