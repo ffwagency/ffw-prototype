@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {% block head %}
+      <title>Prototype - {% block title %}{% endblock %}</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="assets/css/styles.css">
+    {% endblock %}
+  </head>
+  <body>
+
+    {% block header %}
+      <h1>{% block title %}{% endblock %}</h1>
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+      <script src="assets/js/jquery-1.11.3.min.js"></script>
+    {% endblock %}
+
+  </body>
+</html>
