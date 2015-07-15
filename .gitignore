@@ -2,6 +2,10 @@
 logs
 *.log
 
+#Ignore files related to Sublime Text
+*.sublime-project
+*.sublime-workspace
+
 # Ignore sass cache
 .npm/.sass-cache/
 .npm/node_modules
