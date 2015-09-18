@@ -1,13 +1,14 @@
 {
-  "name": "y",
-  "version": "0.0.0",
-  "homepage": "https://github.com/taracila/prototype",
+  "name": "FFW Prototype Template",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ffwagency/ffw-prototype",
   "authors": [
-    "Eugen Taracila <taracilaeugen@gmail.com>"
+    "Eugen Taracila <taracilaeugen@gmail.com>",
+    "Morten Christoffersen <mortenc@gmail.com>"
   ],
   "license": "MIT",
   "dependencies": {
-    "susy": "~2.2.5",
+    "susy": "~2.2.6",
     "bower.json": "~0.6.9"
   },
   "ignore": [
