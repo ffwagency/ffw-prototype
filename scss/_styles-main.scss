@@ -1,7 +1,6 @@
 /*
-STYLES.SCSS
+STYLES-MAIN.SCSS
 
-This is the main scss file that will be compiled for the project. 
 Please centralize all includes here.
 
 WARNING: DO NOT EDIT /assets/css/styles.css file manually, this should be generated only by compiler based on this file.
@@ -11,26 +10,32 @@ WARNING: DO NOT EDIT /assets/css/styles.css file manually, this should be genera
 //Required imports
 @import "../.npm/bower_components/susy/sass/susy";
 
+
+//Helpers
+@import 'helpers/extends';
+@import 'helpers/functions';
+@import 'helpers/mixins';
+
 // Reset
-@import 'vendors/reset';
+@import 'base/reset';
 
 //Base
 @import 'base/variables';
 @import 'base/colors';
 @import 'base/fonts';
+@import 'base/grid';
 @import 'base/typography';
+
+// Vendors
+@import 'vendors/chosen';
 
 // Blocks
 @import 'blocks/example-block';
-
-// Vendors
+@import 'blocks/index-links';
 
 // Layouts
 @import 'layout/layout';
 @import 'layout/navigation';
-@import 'layout/header';
-@import 'layout/footer';
-
 
 // Pages
 @import 'pages/index';

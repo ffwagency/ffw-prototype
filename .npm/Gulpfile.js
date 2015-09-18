@@ -5,20 +5,20 @@ var gulp = require('gulp'),
   filter = require('gulp-filter'),
   twig = require('gulp-twig'),
   sass = require('gulp-ruby-sass'),
-  sourcemaps = require('gulp-sourcemaps'),
+  //sourcemaps = require('gulp-sourcemaps'),
   autoprefixer = require('gulp-autoprefixer'),
   prettify = require('gulp-html-prettify'),
-  data = require('gulp-data'),
+  //data = require('gulp-data'),
   path = require('path'),
   reload = browserSync.reload,
   src = {
-    scss: '../assets/scss/**/*.scss',
-    css: '../assets/css',
-    blocks: '../templates/blocks/*.twig',
-    layouts: '../templates/layouts/*.twig',
-    pages: '../templates/pages/*.twig',
-    dataJson: '../data/*.json',
-    javascript: '../assets/js/*.js',
+    scss: '../scss/**/*.scss',
+    css: '../css',
+    html_blocks: '../templates/blocks/*.twig',
+    html_layouts: '../templates/layouts/*.twig',
+    html_pages: '../templates/pages/*.twig',
+    //dataJson: '../data/*.json',
+    javascript: '../js/*.js',
   };
 
 /**
@@ -28,13 +28,13 @@ gulp.task('serve', ['sass', 'templates'], function () {
 
   browserSync({
     server: "../",
-    files: ["../assets/css/styles.css", src.pages]
+    files: ["../css/styles.css", src.html]
   });
 
   gulp.watch(src.scss, ['sass']);
-  gulp.watch([src.pages, src.blocks, src.layouts], ['templates']);
+  gulp.watch([src.html_blocks, src.html_layouts, src.html_templates], ['templates']);
   gulp.watch(src.javascript, reload);
-  gulp.watch(src.dataJson, reload);
+  //gulp.watch(src.dataJson, reload);
 });
 
 
@@ -42,19 +42,19 @@ gulp.task('serve', ['sass', 'templates'], function () {
  * Kick off the sass stream with source maps + error handling
  */
 function sassStream() {
-  return sass('../assets/scss', {
-    sourcemap: true,
+  return sass('../scss', {
+    sourcemap: false,
     style: 'expanded',
     unixNewlines: true
   })
     .on('error', function (err) {
       console.error('Error!', err.message);
     })
-    .pipe(autoprefixer({ browsers: ['> 5%', 'last 1 version']}))
-    .pipe(sourcemaps.write('./', {
-      includeContent: false,
-      sourceRoot: '../assets/scss'
-    }));
+    .pipe(autoprefixer({add: false, browsers: []}));
+    //.pipe(sourcemaps.write('./', {
+      //includeContent: false,
+      //sourceRoot: '../scss'
+    //}));
 }
 
 
@@ -74,16 +74,12 @@ gulp.task('sass', function () {
  * Generate templates.
  */
 gulp.task('templates', function () {
-  return gulp.src(src.pages)
-
-    .pipe(data(function (file) {
+  return gulp.src(src.html_pages)
+    //.pipe(data(function (file) {
       //return require('../data/global.json');
       //return require('../data/' + path.basename(file.path, '.twig') + '.json');
-    }))
+    //}))
     .pipe(twig())
-    .on('error', function (err) {
-      console.error('Error!', err.message);
-    })
     .pipe(prettify({indent_char: ' ', indent_size: 2}))
     .pipe(gulp.dest('../'))
     .on("end", reload);
@@ -96,4 +92,3 @@ if (process.env.APP_ENV === 'dev') {
 } else {
   gulp.task('default', ['serve']);
 }
-
