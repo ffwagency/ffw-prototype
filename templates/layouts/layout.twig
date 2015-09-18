@@ -5,7 +5,7 @@
     {% block head %}
       <title>Prototype - {% block title %}{% endblock %}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="assets/css/styles.css">
+      <link rel="stylesheet" href="css/styles.css">
     {% endblock %}
   </head>
   <body>
@@ -21,7 +21,7 @@
       <footer>This is a footer</footer>
     {% endblock %}
 
-    {% include "index-links.twig" %}
+    {% include "../blocks/index-links.twig" %}
 
     {% block footer_scripts %}
       <!--<script src="js/lib/media.match.min.js"></script>
