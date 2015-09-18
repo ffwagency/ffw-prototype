@@ -1,5 +1,5 @@
 {
-  "name": "FFW Prototype",
+  "name": "ffw-prototype",
   "version": "1.0.0",
   "description": "[Read about the framework](https://github.com/ffwagency/ffw-prototype/README.md)",
   "main": "Gulpfile.js",
