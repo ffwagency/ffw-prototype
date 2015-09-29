@@ -1,12 +1,12 @@
 'use strict';
 
 var gulp = require('gulp'),
+  autoprefixer = require('gulp-autoprefixer'),
   browserSync = require('browser-sync'),
   filter = require('gulp-filter'),
   twig = require('gulp-twig'),
-  sass = require('gulp-ruby-sass'),
-  //sourcemaps = require('gulp-sourcemaps'),
-  autoprefixer = require('gulp-autoprefixer'),
+  sass = require('gulp-sass'),
+  sourcemaps = require('gulp-sourcemaps'),
   prettify = require('gulp-html-prettify'),
   //data = require('gulp-data'),
   path = require('path'),
@@ -32,37 +32,25 @@ gulp.task('serve', ['sass', 'templates'], function () {
   });
 
   gulp.watch(src.scss, ['sass']);
-  gulp.watch([src.html_blocks, src.html_layouts, src.html_templates], ['templates']);
+  gulp.watch([src.html_blocks, src.html_layouts, src.html_pages], ['templates']);
   gulp.watch(src.javascript, reload);
   //gulp.watch(src.dataJson, reload);
 });
 
-
 /**
- * Kick off the sass stream with source maps + error handling
- */
-function sassStream() {
-  return sass('../scss', {
-    sourcemap: false,
-    style: 'expanded',
-    unixNewlines: true
-  })
-    .on('error', function (err) {
-      console.error('Error!', err.message);
-    })
-    .pipe(autoprefixer({add: false, browsers: []}));
-    //.pipe(sourcemaps.write('./', {
-      //includeContent: false,
-      //sourceRoot: '../scss'
-    //}));
-}
-
-
-/**
- * Compile sass, filter the results, inject CSS into all browsers.
+ * Compile sass, write sourcemaps, autoprefix, filter the results, inject CSS into all browsers.
  */
 gulp.task('sass', function () {
-  return sassStream()
+  gulp.src('../scss/{,*/}*.{scss,sass}')
+    .pipe(sourcemaps.init())
+    .pipe(sass({
+      errLogToConsole: true
+    }))
+    .on('error', function (err) {
+       console.error('Error!', err.message);
+     })
+    .pipe(autoprefixer({browsers: ['last 2 versions']}))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(src.css))
     .pipe(filter("**/*.css"))
     .pipe(reload({
