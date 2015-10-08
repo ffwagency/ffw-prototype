@@ -15,7 +15,7 @@ $susy: (
   container-position: rem($container-margin),
   container: auto,
   columns: $column-mobile,
-  gutters: 15px/44px,
+  gutters: 15px / 44px,
   column-width: false,
   debug: (
     image: $show-image,
@@ -25,11 +25,11 @@ $susy: (
   )
 );
 
-$susy_tablet: (
+$susy-tablet: (
   container-position: rem($container-margin * 4),
   container: auto,
   columns: $column-tablet,
-  gutters: 38px/59px,
+  gutters: 38px / 59px,
   column-width: false,
   debug: (
     image: $show-image,
@@ -39,9 +39,9 @@ $susy_tablet: (
   ),
 );
 
-$susy_desktop: (
+$susy-desktop: (
   columns: $column-desktop,
-  gutters: 36px/62px,
+  gutters: 36px / 62px,
   container-position: rem($container-margin * 4),
   container: auto,
   debug: (
@@ -69,7 +69,7 @@ $susy-media: (
   // min-width: 480px
   mobileLandscape: em($mobile-landscape) * 1em,
 
-  // min-width: 768px and max-width: 1999px 
+  // min-width: 768px and max-width: 1999px
   tabletOnly: (
     media: screen,
     min-width: em($tablet) * 1em,
@@ -88,10 +88,10 @@ $susy-media: (
   @include container();
 
   @include susy-media(tablet) {
-    @include container($susy_tablet);
+    @include container($susy-tablet);
   }
 
   @include susy-media(desktop) {
-    @include container($susy_desktop);
+    @include container($susy-desktop);
   }
 }

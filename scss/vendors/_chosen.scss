@@ -1,3 +1,5 @@
+// Custom Chosen selector.
+
 .chosen-container {
   font-size: rem(13px);
   user-select: none;
@@ -89,10 +91,6 @@
   }
 }
 
-// @end
-// @group Single Chosen
-
-
 .chosen-single {
   padding: rem(0 0 0 8px);
   line-height: rem(35px);
@@ -121,11 +119,11 @@
   }
 
   b {
+    @extend %icons;
+    @extend .icon-arrow-down;
     display: block;
     height: 100%;
     width: 100%;
-    @extend %icons;
-    @extend .icon-arrow-down;
 
     &:after {
       font-size: rem(17px);

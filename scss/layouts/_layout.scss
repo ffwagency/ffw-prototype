@@ -1,11 +1,7 @@
-/*
-LAYOUT
-
-This is the main layout file.
-This file should be used to define the primary page layout that each of the page types will be extending.
-This  includes global styles for html, body, etc.
-
-*/
+// LAYOUT
+// This is the main layout file.
+// This file should be used to define the primary page layout that each of the page types will be extending.
+// This includes global styles for html, body, etc.
 
 @viewport{
   zoom: 1;
@@ -17,16 +13,11 @@ This  includes global styles for html, body, etc.
   zoom: 1;
 }
 
-//Enable border-box for all elements
-*, *:before, *:after {
-	box-sizing: border-box; 
-}
-
 //Enable font-smoothing
 html {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-smoothing: antialiased;
-	font-size: $base-font-size; // Don't modify static unit.
-	line-height: $base-line-height;
+  font-size: $base-font-size; // Don't modify static unit.
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  line-height: $base-line-height;
 }

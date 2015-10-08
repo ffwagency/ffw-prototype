@@ -8,16 +8,17 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   sourcemaps = require('gulp-sourcemaps'),
   prettify = require('gulp-html-prettify'),
-  //data = require('gulp-data'),
+  data = require('gulp-data'),
   path = require('path'),
   reload = browserSync.reload,
+  scsslint = require('gulp-scss-lint'),
   src = {
     scss: '../scss/**/*.scss',
     css: '../css',
     html_blocks: '../templates/blocks/*.twig',
     html_layouts: '../templates/layouts/*.twig',
     html_pages: '../templates/pages/*.twig',
-    //dataJson: '../data/*.json',
+    dataJson: '../data/*.json',
     javascript: '../js/*.js',
   };
 
@@ -28,13 +29,13 @@ gulp.task('serve', ['sass', 'templates'], function () {
 
   browserSync({
     server: "../",
-    files: ["../css/styles.css", src.html]
+    files: ["../css/styles.css", src.html],
   });
 
   gulp.watch(src.scss, ['sass']);
   gulp.watch([src.html_blocks, src.html_layouts, src.html_pages], ['templates']);
   gulp.watch(src.javascript, reload);
-  //gulp.watch(src.dataJson, reload);
+  gulp.watch(src.dataJson, reload);
 });
 
 /**
@@ -47,8 +48,8 @@ gulp.task('sass', function () {
       errLogToConsole: true
     }))
     .on('error', function (err) {
-       console.error('Error!', err.message);
-     })
+      console.error('Error!', err.message);
+    })
     .pipe(autoprefixer({browsers: ['last 2 versions']}))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(src.css))
@@ -63,16 +64,29 @@ gulp.task('sass', function () {
  */
 gulp.task('templates', function () {
   return gulp.src(src.html_pages)
-    //.pipe(data(function (file) {
+    .pipe(data(function (file) {
       //return require('../data/global.json');
-      //return require('../data/' + path.basename(file.path, '.twig') + '.json');
-    //}))
+      return require('../data/' + path.basename(file.path, '.twig') + '.json');
+    }))
     .pipe(twig())
     .pipe(prettify({indent_char: ' ', indent_size: 2}))
     .pipe(gulp.dest('../'))
     .on("end", reload);
 });
 
+/**
+ * Lint SCSS files
+ */
+ // Lint Rules
+
+gulp.task('scss-lint', function () {
+  return gulp.src(src.scss)
+    .pipe(
+      scsslint({
+        'config': 'scss-lint.yml',
+      })
+    );
+});
 
 // CIBOX.
 if (process.env.APP_ENV === 'dev') {

@@ -22,7 +22,9 @@
     "browser-sync": "^2.9.6",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.2",
+    "gulp-data": "^1.2.0",
     "gulp-sass": "^2.0.4",
+    "gulp-scss-lint": "^0.3.6",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-twig": "^0.4.0"
   },
