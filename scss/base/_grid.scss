@@ -1,5 +1,5 @@
 // Susy grid.
-$debug: false; // Set true to show the grid.
+$debug: true; // Set true to show the grid.
 $show-image: 'hide';
 
 @if $debug == false {
@@ -19,7 +19,7 @@ $susy: (
   column-width: false,
   debug: (
     image: $show-image,
-    color: rgba(#66f, .25),
+    color: rgba($black, .25),
     output: background,
     toggle: top right,
   )
@@ -33,7 +33,7 @@ $susy-tablet: (
   column-width: false,
   debug: (
     image: $show-image,
-    color: rgba(#999, .25),
+    color: rgba($grey, .25),
     output: background,
     toggle: top right,
   ),
@@ -46,7 +46,7 @@ $susy-desktop: (
   container: auto,
   debug: (
     image: $show-image,
-    color: rgba(#222, .25),
+    color: rgba($dark-grey, .25),
     output: background,
     toggle: top right,
   ),

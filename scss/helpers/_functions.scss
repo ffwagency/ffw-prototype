@@ -15,7 +15,7 @@
 // CONVERT TO REM
 @function convert-to-rem($value, $base-value: $base-font-size) {
   $value: strip-unit($value) / strip-unit($base-value) * 1rem;
-  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+
   @return $value;
 }
 

@@ -14,7 +14,7 @@ linters:
     space_after_bang: false
 
   BemDepth:
-    enabled: false
+    enabled: true
     max_elements: 1
 
   BorderZero:
@@ -72,7 +72,7 @@ linters:
     enabled: true
 
   IdSelector:
-    enabled: true
+    enabled: false
 
   ImportantRule:
     enabled: false
@@ -107,7 +107,7 @@ linters:
     ignore_parent_selectors: false
 
   PlaceholderInExtend:
-    enabled: true
+    enabled: false
 
   PropertyCount:
     enabled: false
@@ -115,7 +115,7 @@ linters:
     max_properties: 10
 
   PropertySortOrder:
-    enabled: true
+    enabled: false
     ignore_unspecified: false
     min_properties: 2
     separate_groups: false
@@ -194,7 +194,7 @@ linters:
     style: single_quotes # or double_quotes
 
   TrailingSemicolon:
-    enabled: true
+    enabled: false
 
   TrailingWhitespace:
     enabled: true

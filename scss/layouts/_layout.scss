@@ -15,9 +15,15 @@
 
 //Enable font-smoothing
 html {
+  @include helvetica;
   font-size: $base-font-size; // Don't modify static unit.
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   line-height: $base-line-height;
+}
+
+body {
+  // Disable in production mode;
+  @include show-breakpoints;
 }

@@ -12,6 +12,7 @@ var gulp = require('gulp'),
   path = require('path'),
   reload = browserSync.reload,
   scsslint = require('gulp-scss-lint'),
+  jshint = require('gulp-jshint'),
   src = {
     scss: '../scss/**/*.scss',
     css: '../css',
@@ -22,26 +23,27 @@ var gulp = require('gulp'),
     javascript: '../js/*.js',
   };
 
-/**
- * Start the BrowserSync Static Server + Watch files
- */
-gulp.task('serve', ['sass', 'templates'], function () {
+// Task for local, static development.
+gulp.task('local-development', ['sass-dev', 'templates'], function () {
 
   browserSync({
     server: "../",
     files: ["../css/styles.css", src.html],
   });
 
-  gulp.watch(src.scss, ['sass']);
+  gulp.watch(src.scss, ['sass-dev']);
   gulp.watch([src.html_blocks, src.html_layouts, src.html_pages], ['templates']);
   gulp.watch(src.javascript, reload);
-  gulp.watch(src.dataJson, reload);
+  gulp.watch(src.dataJson, ['templates', reload]);
 });
 
-/**
- * Compile sass, write sourcemaps, autoprefix, filter the results, inject CSS into all browsers.
- */
-gulp.task('sass', function () {
+// Task run in Drupal already. No browser sync, templates, javascript watch. NOT TESTED YET!
+gulp.task('drupal-development', ['sass-dev'], function () {
+  gulp.watch(src.scss, ['sass-dev']);
+});
+
+// Task for compiling sass in development mode with all features enabled.
+gulp.task('sass-dev', function () {
   gulp.src('../scss/{,*/}*.{scss,sass}')
     .pipe(sourcemaps.init())
     .pipe(sass({
@@ -59,14 +61,32 @@ gulp.task('sass', function () {
     }));
 });
 
+// Task for compiling sass in production mode. No sourcemaps.
+gulp.task('sass-prod', function () {
+  gulp.src('../scss/{,*/}*.{scss,sass}')
+    .pipe(sass({
+      errLogToConsole: true
+    }))
+    .on('error', function (err) {
+      console.error('Error!', err.message);
+    })
+    .pipe(autoprefixer({browsers: ['last 2 versions']}))
+    .pipe(gulp.dest(src.css))
+    .pipe(filter("**/*.css"))
+    .pipe(reload({
+      stream: true
+    }));
+});
+
+
 /**
  * Generate templates.
  */
 gulp.task('templates', function () {
   return gulp.src(src.html_pages)
     .pipe(data(function (file) {
-      //return require('../data/global.json');
-      return require('../data/' + path.basename(file.path, '.twig') + '.json');
+      return require('../data/global.json');
+      //return require('../data/' + path.basename(file.path, '.twig') + '.json');
     }))
     .pipe(twig())
     .pipe(prettify({indent_char: ' ', indent_size: 2}))
@@ -74,11 +94,7 @@ gulp.task('templates', function () {
     .on("end", reload);
 });
 
-/**
- * Lint SCSS files
- */
- // Lint Rules
-
+// SCSS Lint
 gulp.task('scss-lint', function () {
   return gulp.src(src.scss)
     .pipe(
@@ -88,9 +104,32 @@ gulp.task('scss-lint', function () {
     );
 });
 
+// Javascript Lint
+gulp.task('js-lint', function () {
+  return gulp.src(src.javascript)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+
+// Task for development plus linter.
+gulp.task('dev', ['sass-dev', 'templates', 'scss-lint', 'js-lint'], function () {
+  browserSync({
+    server: "../",
+    files: ["../css/styles.css", src.html],
+  });
+
+  gulp.watch(src.scss, ['sass-dev', 'scss-lint']);
+  gulp.watch([src.html_blocks, src.html_layouts, src.html_pages], ['templates']);
+  gulp.watch(src.javascript, ['js-lint', reload]);
+  gulp.watch(src.dataJson, ['templates', reload]);
+});
+
 // CIBOX.
 if (process.env.APP_ENV === 'dev') {
-  gulp.task('default', ['sass', 'templates']);
+  gulp.task('default', ['sass-dev', 'templates']);
+} else if (process.env.APP_ENV === 'prod') {
+  gulp.task('default', ['sass-prod', 'templates']);
 } else {
-  gulp.task('default', ['serve']);
+  gulp.task('default', ['local-development']);
 }
