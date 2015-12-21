@@ -1,7 +1,12 @@
+{#
+  Include this navigation for quick nav.
+  data source for menu is located in data/global.json
+#}
 <div class="index-links">
   <input type="checkbox" id="index-link">
   <label for="index-link">Go to page</label>
   <nav>
+
     {% for menu in prototype_nav %}
       <a href="{{ menu.link }}">{{ menu.name }}</a>
     {% endfor %}

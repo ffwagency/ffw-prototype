@@ -20,15 +20,14 @@ var gulp = require('gulp'),
     html_layouts: '../templates/layouts/*.twig',
     html_pages: '../templates/pages/*.twig',
     dataJson: '../data/*.json',
-    javascript: '../js/*.js',
+    javascript: '../js/*.js'
   };
 
 // Task for local, static development.
 gulp.task('local-development', ['sass-dev', 'templates'], function () {
-
   browserSync({
     server: "../",
-    files: ["../css/styles.css", src.html],
+    files: ["../css/styles.css", src.html]
   });
 
   gulp.watch(src.scss, ['sass-dev']);
@@ -37,10 +36,6 @@ gulp.task('local-development', ['sass-dev', 'templates'], function () {
   gulp.watch(src.dataJson, ['templates', reload]);
 });
 
-// Task run in Drupal already. No browser sync, templates, javascript watch. NOT TESTED YET!
-gulp.task('drupal-development', ['sass-dev'], function () {
-  gulp.watch(src.scss, ['sass-dev']);
-});
 
 // Task for compiling sass in development mode with all features enabled.
 gulp.task('sass-dev', function () {
@@ -112,7 +107,8 @@ gulp.task('js-lint', function () {
 });
 
 
-// Task for development plus linter.
+// Gulp Task for development mode.
+// SASS compile, template generation, SCSS/JS linter
 gulp.task('dev', ['sass-dev', 'templates', 'scss-lint', 'js-lint'], function () {
   browserSync({
     server: "../",
@@ -126,10 +122,4 @@ gulp.task('dev', ['sass-dev', 'templates', 'scss-lint', 'js-lint'], function () 
 });
 
 // CIBOX.
-if (process.env.APP_ENV === 'dev') {
-  gulp.task('default', ['sass-dev', 'templates']);
-} else if (process.env.APP_ENV === 'prod') {
-  gulp.task('default', ['sass-prod', 'templates']);
-} else {
-  gulp.task('default', ['local-development']);
-}
+gulp.task('default', ['local-development']);
