@@ -72,14 +72,6 @@
     @include susy-media(desktop) {
       content: 'Small desktop' !important;
     }
-
-    @include susy-media(desktopWide) {
-      content: 'Wide desktop' !important;
-    }
-
-    @include susy-media(desktopSuperwide) {
-      content: 'Super wide desktop' !important;
-    }
   }
 }
 
