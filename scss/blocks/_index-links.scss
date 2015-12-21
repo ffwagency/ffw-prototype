@@ -10,9 +10,9 @@
   z-index: 2000;
 
   label {
-    background-color: $light-blue;
+    background-color: $pigeon-post-light;
     border-radius: 20px;
-    box-shadow: 0 1px 10px $grey;
+    box-shadow: 0 1px 10px $gray;
     cursor: pointer;
     padding: rem(5px 10px);
     transition: border-radius .4s;
@@ -20,7 +20,7 @@
   }
 
   nav {
-    background-color: $light-blue;
+    background-color: $pigeon-post-light;
     border-radius: 20px 20px 20px 0;
     bottom: rem(26px);
     max-height: 0;

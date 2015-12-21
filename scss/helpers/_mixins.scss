@@ -52,10 +52,10 @@
 // Add demo label for responsive info.
 @mixin show-breakpoints {
   &:after {
-    background-color: $light-blue;
+    background-color: $pigeon-post-light;
     border-radius: 20px;
     bottom: rem(20px);
-    box-shadow: 0 1px 10px $grey;
+    box-shadow: 0 1px 10px $gray;
     color: $black;
     content: 'Mobile';
     display: block;
@@ -72,14 +72,6 @@
     @include susy-media(desktop) {
       content: 'Small desktop' !important;
     }
-
-    @include susy-media(desktopWide) {
-      content: 'Wide desktop' !important;
-    }
-
-    @include susy-media(desktopSuperwide) {
-      content: 'Super wide desktop' !important;
-    }
   }
 }
 
@@ -91,7 +83,7 @@
   border-radius: 20px;
   display: block;
   color: $black;
-  background-color: $light-blue;
+  background-color: $pigeon-post-light;
   z-index: 1000;
   user-select: none;
 }

@@ -41,8 +41,14 @@ So you got the prerequisites installed, and you're ready to get started? Great! 
     bower install
     ``` 
 
-5. Initialize the project with Gulp:   
+5. Initialize the project with Gulp:
     
     ```
-    gulp
-    ``` 
+    gulp - performs localhost, sass compile, template generation WITHOUT scss/js linters.
+    ```
+    ```
+    gulp dev - performs localhost, sass compile, template generation, scss and javascript lint.
+    ```
+    ```
+    gulp sass-prod - performs sass compile only WITHOUT sourcemaps.
+    ```

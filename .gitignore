@@ -13,7 +13,6 @@ logs
 
 # Ignore SASS source maps
 *.css.map
-css/styles.css
 
 # Runtime data
 pids
