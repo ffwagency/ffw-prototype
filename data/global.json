@@ -1,0 +1,14 @@
+{
+   "site_title": "FFW Prototype",
+   "img_path": "images/",
+   "prototype_nav":[
+      {
+         "name":"Index",
+         "link":"index.html"
+      },
+      {
+         "name":"Styleguide",
+         "link":"styleguide.html"
+      }
+   ]
+}

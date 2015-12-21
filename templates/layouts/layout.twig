@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     {% block head %}
-      <title>Prototype - {% block title %}{% endblock %}</title>
+      <title>{{ site_title }} - {% block title %}{% endblock %}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      {% include '../blocks/favicons.twig' %}
       <link rel="stylesheet" href="css/styles.css">
     {% endblock %}
   </head>
@@ -24,8 +25,8 @@
     {% include "../blocks/index-links.twig" %}
 
     {% block footer_scripts %}
-      <!--<script src="js/lib/media.match.min.js"></script>
-      <script src="js/lib/enquire.min.js"></script>-->
+      <script src="js/lib/media.match.min.js"></script>
+      <script src="js/lib/enquire.min.js"></script>
       <script src="js/lib/jquery.min.js"></script>
       <script src="js/lib/chosen.jquery.min.js"></script>
       <script src="js/script.js"></script>
